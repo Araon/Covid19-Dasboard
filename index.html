@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+    <!-- Chart JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <title>Covid19 Graph</title>
+    </head>
+     <body class="bg-light">
+        <div class="container-fluid">
+            <h1 class="py-3 text-muted">Covid-19 Graph</h1>
+            <h6 class="text-muted">A thing by <a href="https://github.com/Araon" class="text-muted">Soumik</a></h6>
+                <div class="col-md-10 offset-md-1">
+                    <div class="card-body md">
+                    <canvas id="myChart" width="800" height="400"></canvas>
+                    <script>
+
+                        
+                        chartIt();
+
+
+                        async function chartIt() 
+                        {
+                            const data = await getData();
+                            const ctx = document.getElementById('myChart').getContext('2d');
+                            const chart = new Chart(ctx, 
+                            {
+                                // The type of chart we want to create
+                                type: 'line',
+                                // The data for our dataset
+                                data: 
+                                {
+                                    labels: data.xs,
+                                    datasets: 
+                                    [
+                                        {
+                                            label: 'No. of infected',
+                                            backgroundColor: 'rgb(0, 99, 132, 0.5)',
+                                            borderColor: 'rgb(0, 99, 132)',
+                                            data: data.ys
+                                        }
+                                    ]
+                                },
+
+                                    // Configuration options go here
+                                    options: {
+                                        responsive: true
+                                    }
+                            });
+                        }
+
+                        //const api_url = 'https://api.covid19india.org/v2/state_district_wise.json';
+
+                        async function getData()
+                        {
+                            const xs = [];
+                            const ys = [];
+                            fetch("https://pomber.github.io/covid19/timeseries.json")
+                            .then(response => response.json())
+                            .then(data => 
+                            {
+                                data["India"].forEach(({date, confirmed}) => {const Cdate = date;
+                                xs.push(Cdate.slice(5));
+                                const Cconfirmed = confirmed;
+                                ys.push(Cconfirmed);
+                                });
+
+                            });
+                            return {xs, ys};
+                            //const response = await fetch(api_url);
+                           // const data = await response.json();
+                            //total = data[16].districtData[0].confirmed + data[16].districtData[1].confirmed + data[16].districtData[2].confirmed + data[16].districtData[3].confirmed + data[16].districtData[4].confirmed + data[16].districtData[5].confirmed + data[16].districtData[6].confirmed + data[16].districtData[7].confirmed + data[16].districtData[8].confirmed;
+                            //console.log(total);
+                        }
+                    </script>
+                    </div>
+                </div>
+        </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>
