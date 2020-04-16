@@ -2,85 +2,38 @@
 <html lang="en">
   <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
     
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     
     <!-- Chart JS -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-    <title>Covid19 Graph</title>
+    <title>COVID-19 Indian Stats</title>
     </head>
      <body class="bg-light">
         <div class="container-fluid">
-            <h1 class="py-3 text-muted">Covid-19 Graph</h1>
-            <h6 class="text-muted">A thing by <a href="https://github.com/Araon" class="text-muted">Soumik</a></h6>
+            <h1 class="py-3 text-muted">COVID-19 Indian Stats</h1>
+            <h6 class="text-muted">A thing by <a href="https://github.com/Araon" class="text-muted">Soumik</a> and <a href="https://github.com/therajdeepbiswas" class="text-muted">Rajdeep</a> </h6>
                 <div class="col-md-10 offset-md-1">
-                    <div class="card-body md">
-                    <canvas id="myChart" width="800" height="400"></canvas>
-                    <script>
-
-                        
-                        chartIt();
-
-
-                        async function chartIt() 
-                        {
-                            const data = await getData();
-                            const ctx = document.getElementById('myChart').getContext('2d');
-                            const chart = new Chart(ctx, 
-                            {
-                                // The type of chart we want to create
-                                type: 'line',
-                                // The data for our dataset
-                                data: 
-                                {
-                                    labels: data.xs,
-                                    datasets: 
-                                    [
-                                        {
-                                            label: 'No. of infected',
-                                            backgroundColor: 'rgb(0, 99, 132, 0.5)',
-                                            borderColor: 'rgb(0, 99, 132)',
-                                            data: data.ys
-                                        }
-                                    ]
-                                },
-
-                                    // Configuration options go here
-                                    options: {
-                                        responsive: true
-                                    }
-                            });
-                        }
-
-                        //const api_url = 'https://api.covid19india.org/v2/state_district_wise.json';
-
-                        async function getData()
-                        {
-                            const xs = [];
-                            const ys = [];
-                            await fetch("https://pomber.github.io/covid19/timeseries.json")
-                            .then(response => response.json())
-                            .then(data => 
-                            {
-                                data["India"].forEach(({date, confirmed}) => {const Cdate = date;
-                                xs.push(Cdate.slice(5));
-                                const Cconfirmed = confirmed;
-                                ys.push(Cconfirmed);
-                                });
-
-                            });
-                            return {xs, ys};
-                            //const response = await fetch(api_url);
-                           // const data = await response.json();
-                            //total = data[16].districtData[0].confirmed + data[16].districtData[1].confirmed + data[16].districtData[2].confirmed + data[16].districtData[3].confirmed + data[16].districtData[4].confirmed + data[16].districtData[5].confirmed + data[16].districtData[6].confirmed + data[16].districtData[7].confirmed + data[16].districtData[8].confirmed;
-                            //console.log(total);
-                        }
-                    </script>
+                    <div>
+                        <!--<div class="btn-group offset-md-10">
+                            <button type="button1" class="btn btn-sm btn-outline-info ">beginning</button>
+                            <button type="button2" class="btn btn-sm btn-outline-info ">2-Weeks</button>
+                        </div>-->
+                        <div>
+                            <canvas id="myChart"></canvas>
+                        </div>
+                        <script src="./js/main.js">    
+                        </script>
                     </div>
                 </div>
+        </div>
+        <div class="py-5 px-4">
+            <h6 class="text-muted">&#9679; Disclaimer: The Graph and all the prediction are solely for edcational purpose and none of this is relevent to real life issue</h6>
+            <h6 class="text-muted">&#9679;This project is made by students for evaluation Machine Learning models in such scenarios</h6>
         </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
