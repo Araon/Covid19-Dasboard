@@ -76,7 +76,7 @@ async function getPrediction()
     const py = []; // prediction
 
 
-    const response = await fetch('current.json');
+    const response = await fetch('https://raw.githubusercontent.com/therajdeepbiswas/covid19-prediction/master/jsons/current.json');
     const pData = await response.json();
     const ptabel = pData["India"];
     const prdata = ptabel.slice(Alenght);
