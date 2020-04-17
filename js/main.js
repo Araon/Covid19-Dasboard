@@ -76,7 +76,7 @@ async function getPrediction()
     const py = []; // prediction
 
 
-    const response = await fetch('prediction.json');
+    const response = await fetch('current.json');
     const pData = await response.json();
     const ptabel = pData["India"];
     const prdata = ptabel.slice(Alenght);
