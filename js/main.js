@@ -15,6 +15,14 @@ async function chartIt()
             datasets: 
             [
                 {
+                    label: 'dead',
+                    backgroundColor: 'rgb(24,24,24,0.6)',
+                    borderColor: 'rgb(24,24,24)',
+                    data: data.dead,
+                    fill: true
+
+                },
+                {
                     label: 'recovered',
                     backgroundColor: 'rgb(34,139,34,0.5)',
                     borderColor: 'rgb(34,139,34)',
@@ -31,7 +39,7 @@ async function chartIt()
                 },
                 {
                     label: 'Predicted no. of infected',
-                    backgroundColor: '	rgb(35, 150, 232, 0.5)',
+                    backgroundColor: 'rgb(35, 150, 232, 0.5)',
                     borderColor: 'rgb(35, 150, 232)',
                     data: preData.py,
                     fill: false
@@ -50,23 +58,25 @@ async function getData()
     const xs = []; //date list
     const ys = []; //confirmed list
     const zs = []; //recoverd list
+    const dead = [];
     // gets the data from the JSON database
 
-    const response = await fetch("https://pomber.github.io/covid19/timeseries.json")
+    const response = await fetch("https://api.covid19india.org/data.json")
     const data = await response.json();
-    const table = data["India"];
+    const table = data["cases_time_series"];
     Alenght = table.length - 14;
     const recentData = table.slice(Alenght);
-    //console.log(recentData);
 
-    recentData.forEach(({date, confirmed, recovered}) => { const Cdate = date;
-    xs.push(date.slice(5));
-    const Cconfirmed = confirmed;
+    recentData.forEach(({date, totalconfirmed, totalrecovered, totaldeceased}) => { const Cdate = date;
+    xs.push(date);
+    const Cconfirmed = totalconfirmed;
     ys.push(Cconfirmed);
-    const Crecovered = recovered;
+    const Crecovered = totalrecovered;
     zs.push(Crecovered);
+    const Cdead = totaldeceased;
+    dead.push(Cdead);
     });
-    return {xs, ys, zs};
+    return {xs, ys, zs, dead};
             
 }
 
@@ -76,18 +86,21 @@ async function getPrediction()
     const py = []; // prediction
 
 
-    const response = await fetch('https://raw.githubusercontent.com/therajdeepbiswas/covid19-prediction/master/jsons/current.json');
-    const pData = await response.json();
-    const ptabel = pData["India"];
-    const prdata = ptabel.slice(Alenght);
+    const response = await fetch("https://raw.githubusercontent.com/therajdeepbiswas/covid19-prediction/master/jsons/current.json")
+    const pdata = await response.json();
+    const ptable = pdata["cases_time_series"];
+    console.log(ptable);
+    const precentData = ptable.slice(Alenght);
 
-    prdata.forEach(({date, confirmed}) => { const Pdate = date;
-    dx.push(date.slice(5));
-    const pConfirmed = confirmed;
-    //console.log(pConfirmed,date);
+    precentData.forEach(({date, dailyconfirmed}) => { const pdate = date;
+    dx.push(date);
+    const pConfirmed = dailyconfirmed;
     py.push(pConfirmed);
+    console.log(date, pConfirmed);
     });
     return {dx, py};
+
 }
+
        
 
