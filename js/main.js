@@ -15,7 +15,7 @@ async function chartIt()
             datasets: 
             [
                 {
-                    label: 'dead',
+                    label: 'Deceased',
                     backgroundColor: 'rgb(24,24,24,0.6)',
                     borderColor: 'rgb(24,24,24)',
                     data: data.dead,
@@ -23,7 +23,7 @@ async function chartIt()
 
                 },
                 {
-                    label: 'recovered',
+                    label: 'Recovered',
                     backgroundColor: 'rgb(34,139,34,0.5)',
                     borderColor: 'rgb(34,139,34)',
                     data: data.zs,
@@ -31,14 +31,14 @@ async function chartIt()
 
                 },
                 {
-                    label: 'No. of infected',
+                    label: 'No. of Confirmed Cases',
                     backgroundColor: '	rgb(139, 0, 0, 0.5)',
                     borderColor: 'rgb(139, 0, 0)',
                     data: data.ys,
                     fill: true
                 },
                 {
-                    label: 'Predicted no. of infected',
+                    label: 'Predicted no. of Cases',
                     backgroundColor: 'rgb(35, 150, 232, 0.5)',
                     borderColor: 'rgb(35, 150, 232)',
                     data: preData.py,
