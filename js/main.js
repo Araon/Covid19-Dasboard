@@ -92,9 +92,9 @@ async function getPrediction()
     console.log(ptable);
     const precentData = ptable.slice(Alenght);
 
-    precentData.forEach(({date, dailyconfirmed}) => { const pdate = date;
+    precentData.forEach(({date, totalconfirmed}) => { const pdate = date;
     dx.push(date);
-    const pConfirmed = dailyconfirmed;
+    const pConfirmed = totalconfirmed;
     py.push(pConfirmed);
     console.log(date, pConfirmed);
     });
