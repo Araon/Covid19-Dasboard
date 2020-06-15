@@ -1,4 +1,5 @@
 chartIt();
+updateUI();
 async function chartIt() 
 {
     const data = await getData();
@@ -55,9 +56,42 @@ async function chartIt()
             options: 
             {
                 responsive: true,
+
             }
     });
 }
+
+async function updateUI()
+{
+    const data = await getData();
+    const preData = await getPrediction();
+
+    const last_entry_comfirmed = data.ys[data.ys.length-1]
+    const last_entry_comfirmed_yesterday = data.ys[data.ys.length-2]
+    const new_comfirmed_cases = last_entry_comfirmed - last_entry_comfirmed_yesterday
+    document.getElementById("total_cases").innerHTML = last_entry_comfirmed || 0;
+    document.getElementById("new_cases").innerHTML = "+"+new_comfirmed_cases || 0;
+
+    const reco = data.zs[data.zs.length-1];
+    const yesterday_reco = data.zs[data.zs.length - 2];
+    const new_reco = reco - yesterday_reco;
+    document.getElementById("reco").innerHTML = reco || 0;
+    document.getElementById("new_recovered").innerHTML = "+"+new_reco || 0;
+
+    const d = data.dead[data.dead.length-1];
+    const yesterday_d = data.dead[data.dead.length - 2];
+    const new_dead = d - yesterday_d;
+    document.getElementById("deceased").innerHTML = d || 0;
+    document.getElementById("new_dead").innerHTML = "+"+new_dead || 0;
+
+
+    const c_pre = preData.py[data.ys.length];
+    const diff = (((c_pre-last_entry_comfirmed)/last_entry_comfirmed)*100);
+    document.getElementById("pred").innerHTML = c_pre || 0;
+    document.getElementById("new_prediction").innerHTML = "Diff: "+diff.toPrecision(3)+"%" || 0+"%;"
+}
+
+
 async function getData()
 {
     const xs = []; //date list
@@ -114,11 +148,13 @@ async function getPrediction()
     dx.push(date);
     const pConfirmed = totalconfirmed;
     py.push(pConfirmed);
-    console.log(date, pConfirmed);
     });
     return {dx, py};
 
 }
+
+
+
 
        
 

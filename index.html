@@ -8,33 +8,76 @@
     
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/main.css">
+
     
-    <!-- Chart JS -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+</head>
     <title>COVID-19 Indian Stats</title>
-    </head>
-     <body class="bg-light">
+        
+    <main class="bg-dark text-light">
         <div class="container-fluid">
-            <h1 class="py-3 text-muted">COVID-19 Indian Stats</h1>
-            <h6 class="text-muted">A thing by <a href="https://github.com/Araon" class="text-muted">Soumik</a> and <a href="https://github.com/therajdeepbiswas" class="text-muted">Rajdeep</a> </h6>
-                <div class="col-md-10 offset-md-1">
-                    <div>
-                        <div>
-                            <canvas id="myChart"></canvas>
-                        </div>
-                        <script src="./js/main.js">    
-                        </script>
+            <h1 class="py-3 text-light">COVID-19 Indian Stats</h1>
+                 <h6 class="text-light">A thing by <a href="https://github.com/Araon" class="text-light">Soumik</a> and <a href="https://github.com/therajdeepbiswas" class="text-light">Rajdeep</a> </h6>
+        </div>
+        <hr class="light">
+
+            <!--Stats-->
+            <div class="stats">
+                <div class="latest-report">
+                    <div class="total_cases">
+                        <div class="title">Confirmed Cases</div>
+                        <div class="value"id="total_cases">0</div>
+                        <div class="new-value" id= "new_cases">+0</div>
+                    </div>
+                    <div class="recovered" >
+                        <div class="title">Recoverd</div>
+                        <div class="value" id="reco">0</div>
+                        <div class="new-value" id="new_recovered">+0</div>
+                    </div>
+                    <div class="deceased" >
+                        <div class="title">Deceased</div>
+                        <div class="value" id="deceased">0</div>
+                        <div class="new_value" id="new_dead">+0</div>
+                    </div>
+                    <div class="predicted" >
+                        <div class="title">Next Day Predicted Cases</div>
+                        <div class="value" id="pred">0</div>
+                        <div class="new-value" id="new_prediction">0%</div>
                     </div>
                 </div>
-        </div>
-        <div class="py-5 px-4">
-            <h6 class="text-muted">&#9679; Disclaimer: The Graph and all the prediction are solely for edcational purpose and none of this is relevent to real life issue</h6>
-            <h6 class="text-muted">&#9679; This project is made by students, for evaluating Machine Learning models in such scenarios</h6>
-        </div>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-  </body>
+            </div>
+        </main>
+    
+    <!-- Chart JS -->
+<body class="bg-light">
+    <div class="container-fluid py-5">
+        <div class="col-md-15 offset-md-1">
+            <div>
+                <div>
+                    <canvas id="myChart"></canvas>
+                </div>
+                    <div class="container-fluid">
+                        <script src="./js/main.js"></script>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <hr class="py-4
+    ">
+<footer class="text-dark px-5">
+        <h6>&#9679; Disclaimer: The Graph and all the prediction are solely for edcational purpose and none of this is relevent to real life issue</h6>
+        <h6>&#9679; This project is made by students, for evaluating Machine Learning models in such scenarios</h6>
+</footer>
+</body>
+
+
+
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </html>

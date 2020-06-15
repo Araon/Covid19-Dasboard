@@ -1,0 +1,40 @@
+/* -------------- Stats ---------*/
+.latest-report {
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+    margin: 0 auto;
+    align-items: center;
+    padding: 10px;
+    color: #ffffff;
+}
+
+.total_cases,
+.recovered,
+.deceased,
+.predicted {
+    height: 100px;
+}
+.title {
+    font-size: 1rem;
+}
+.total_cases .value{
+    font-size: 2em;
+    font-weight: bold;
+    color: firebrick;
+}
+.recovered .value{
+    font-size: 2em;
+    font-weight: bold;
+    color: #09ff00;
+}
+.deceased .value{
+    font-size: 2em;
+    font-weight: bold;
+    color: rgb(87, 87, 87);
+}
+.predicted .value{
+    font-size: 2em;
+    font-weight: bold;
+    color: rgb(0, 93, 199);
+}
