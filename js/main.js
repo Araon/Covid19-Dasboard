@@ -102,7 +102,7 @@ async function getData()
     // getting the data from the JSON database
     // https://api.covid19india.org/data.json
 
-    const response = await fetch("https://api.covid19india.org/data.json")
+    const response = await fetch("https://api.covid19india.org/data.json");
     const data = await response.json();
     const table = data["cases_time_series"];
 
@@ -110,7 +110,7 @@ async function getData()
 
     Alenght = table.length - 14;
     const recentData = table.slice(Alenght);
-
+    console.log(recentData);
     // Reading the each data point from the database and setting each value to
     // a variable
 
@@ -131,16 +131,18 @@ async function getPrediction()
     const dx = []; // date
     const py = []; // prediction
 
-    // Geting the data from the prediction model
+    // (5/9/20): Geting the data from the prediction model
     // Ducky is an absolute madlad, dude made the model run on github using workflow
     // before this i didn't knew github can do stuffs like this
+    // (9/3/22): lmao man changed his github name and the whole thing just broke down XD
 
-    const response = await fetch("https://raw.githubusercontent.com/therajdeepbiswas/covid19-prediction/master/jsons/current.json")
+    const response = await fetch("https://raw.githubusercontent.com/rajdeep-biswas/covid19-prediction/master/jsons/current.json");
     const pdata = await response.json();
     const ptable = pdata["cases_time_series"];
 
     // slicing the data point for the last 14 days
     const precentData = ptable.slice(Alenght);
+    console.log(precentData);
 
     // Reading the each data point from the database and setting each value to
     // a variable
